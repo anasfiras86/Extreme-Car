@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Extreme Car</title>
+<style>
+:root{--bg:#07090d;--card:#111720;--line:#26303c;--red:#e31b23;--txt:#f5f7fa;--muted:#aab3c0}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(circle at 80% 0,#3b0b0e 0,transparent 30%),var(--bg);color:var(--txt);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Tahoma,Arial,sans-serif}
+a{text-decoration:none;color:inherit}.wrap{width:min(1120px,92%);margin:auto}
+header{position:sticky;top:0;z-index:20;background:#07090ddd;backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav{height:70px;display:flex;align-items:center;justify-content:space-between}.brand{font-size:24px;font-weight:900}.brand b{color:var(--red)}
+.icon{width:46px;height:46px;border:1px solid var(--line);border-radius:14px;background:var(--card);color:white;font-size:23px;cursor:pointer;position:relative}
+.badge{position:absolute;top:-5px;left:-5px;background:var(--red);border-radius:12px;min-width:20px;font-size:12px;padding:2px 5px}
+.hero{min-height:550px;display:flex;align-items:center;position:relative;overflow:hidden}
+.hero:before{content:"";position:absolute;inset:12% -8% 8% 35%;opacity:.13;background:radial-gradient(ellipse at 50% 65%,#fff 0 4%,transparent 5%),linear-gradient(165deg,transparent 42%,#fff 43% 46%,transparent 47%),linear-gradient(195deg,transparent 42%,#fff 43% 46%,transparent 47%);filter:blur(2px);transform:scale(1.25)}
+.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#07090d 5%,#07090dcc 50%,#07090d55)}
+.hero .wrap{position:relative;z-index:2}.tag{display:inline-block;border:1px solid #e31b2355;background:#e31b2315;color:#ff8589;border-radius:99px;padding:8px 12px;font-weight:800;font-size:13px}
+h1{font-size:clamp(44px,9vw,78px);line-height:.95;margin:18px 0}h1 span{color:var(--red)}.hero p{max-width:650px;color:#c5ccd6;font-size:18px;line-height:1.8}
+.btn{border:0;border-radius:13px;padding:13px 19px;font-weight:900;cursor:pointer}.primary{background:var(--red);color:#fff}.secondary{background:var(--card);border:1px solid var(--line);color:#fff}
+.actions{display:flex;gap:10px;flex-wrap:wrap}
+section{padding:65px 0}.head{margin-bottom:25px}.head h2{font-size:34px;margin:0 0 7px}.head p{color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.card{background:linear-gradient(180deg,#151c26,#0e131a);border:1px solid var(--line);border-radius:21px;overflow:hidden}
+.product{height:190px;display:grid;place-items:center;background:radial-gradient(circle,#7d1218 0,transparent 38%),#0d1219}.filter{width:155px;height:92px;border:5px solid #222b36;border-radius:18px;background:repeating-linear-gradient(90deg,#68727e 0 6px,#27303a 6px 12px);transform:skew(-7deg);box-shadow:0 20px 40px #0008;display:grid;place-items:center;font-weight:900}
+.body{padding:19px}.body h3{margin:0 0 8px}.muted{color:var(--muted)}.price{font-size:23px;font-weight:900;margin:15px 0}.full{width:100%}
+.services{grid-template-columns:repeat(4,1fr)}.service{padding:20px}.ico{font-size:30px;margin-bottom:10px}.service h3{margin:0 0 7px}
+.contact{display:grid;grid-template-columns:1fr 1fr;gap:18px}.panel{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:22px}.item{padding:14px 0;border-bottom:1px solid var(--line)}.item:last-child{border:0}
+footer{text-align:center;color:var(--muted);border-top:1px solid var(--line);padding:28px}
+.overlay{position:fixed;inset:0;background:#0009;z-index:40;display:none}.overlay.show{display:block}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(430px,92vw);z-index:50;background:#0b0f15;border-left:1px solid var(--line);transform:translateX(110%);transition:.25s;display:flex;flex-direction:column}.drawer.show{transform:none}
+.dhead{padding:18px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}.dbody{padding:15px;overflow:auto;flex:1}.menu a{display:block;padding:18px;border-bottom:1px solid var(--line);font-weight:800}
+.cartrow{padding:15px 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:10px}.qty button{width:30px;height:30px;background:var(--card);color:white;border:1px solid var(--line);border-radius:8px}.empty{text-align:center;color:var(--muted);padding:40px 5px}
+.dfoot{padding:16px;border-top:1px solid var(--line)}.total{display:flex;justify-content:space-between;font-weight:900;font-size:20px;margin-bottom:12px}
+.form{display:none;margin-top:12px}.form.show{display:block}.form input,.form textarea{width:100%;margin:5px 0 9px;padding:11px;border-radius:10px;border:1px solid var(--line);background:#080b10;color:#fff}.form textarea{min-height:80px}
+@media(max-width:850px){.grid,.services{grid-template-columns:1fr 1fr}.contact{grid-template-columns:1fr}}
+@media(max-width:560px){.grid,.services{grid-template-columns:1fr}.hero{min-height:570px}section{padding:52px 0}}
+</style>
+</head>
+<body>
+<header><div class="wrap nav">
+<button class="icon" onclick="openDrawer('menu')">☰</button>
+<a class="brand" href="#home">Extreme <b>Car</b></a>
+<button class="icon" onclick="openDrawer('cart')">🛒<span id="badge" class="badge">0</span></button>
+</div></header>
+
+<section class="hero" id="home"><div class="wrap">
+<span class="tag">PERFORMANCE • TUNING • PARTS</span>
+<h1>Extreme <span>Car</span></h1>
+<p>متجر وخدمات تعديل السيارات في مكان واحد. تصفح المنتجات، أضفها للسلة، وأرسل طلبك مع الدفع عند الاستلام.</p>
+<div class="actions"><a class="btn primary" href="#store">تصفح المتجر</a><a class="btn secondary" href="#services">الخدمات</a></div>
+</div></section>
+
+<section id="store"><div class="wrap"><div class="head"><h2>المتجر</h2><p>منتجات High Flow — الأسعار قابلة للتعديل من الكود.</p></div>
+<div class="grid">
+<article class="card"><div class="product"><div class="filter">HIGH FLOW</div></div><div class="body"><h3>Skoda Superb 2.0 TSI</h3><div class="muted">High Flow Filter</div><div class="price">₪ —</div><button class="btn primary full" onclick="add('Skoda Superb 2.0 TSI')">أضف للسلة</button></div></article>
+<article class="card"><div class="product"><div class="filter">HIGH FLOW</div></div><div class="body"><h3>GTI MK7</h3><div class="muted">High Flow Filter</div><div class="price">₪ —</div><button class="btn primary full" onclick="add('GTI MK7')">أضف للسلة</button></div></article>
+<article class="card"><div class="product"><div class="product"><div class="filter">HIGH FLOW</div></div></div><div class="body"><h3>GTI MK6</h3><div class="muted">High Flow Filter</div><div class="price">₪ —</div><button class="btn primary full" onclick="add('GTI MK6')">أضف للسلة</button></div></article>
+</div></div></section>
+
+<section id="services"><div class="wrap"><div class="head"><h2>الخدمات</h2><p>أهم خدمات Extreme Car.</p></div>
+<div class="grid services">
+<div class="card service"><div class="ico">💻</div><h3>ECU Tuning</h3><div class="muted">Stage 1 / Stage 2 وبرمجة مخصصة.</div></div>
+<div class="card service"><div class="ico">⚙️</div><h3>DSG Tuning</h3><div class="muted">برمجة ناقل الحركة حسب السيارة.</div></div>
+<div class="card service"><div class="ico">🏁</div><h3>Dyno Test</h3><div class="muted">قياس الأداء قبل وبعد التعديل.</div></div>
+<div class="card service"><div class="ico">🚗</div><h3>Performance</h3><div class="muted">Pops & Bangs وخدمات الأداء.</div></div>
+</div></div></section>
+
+<section id="contact"><div class="wrap"><div class="head"><h2>تواصل معنا</h2><p>للطلب والاستفسار والحجز.</p></div>
+<div class="contact"><div class="panel"><div class="item"><b>📍 الموقع</b><br><span class="muted">عناتا — القدس</span></div><div class="item"><b>📱 واتساب</b><br><span class="muted">أضف رقم المحل لاحقًا</span></div><div class="item"><b>🎵 TikTok</b><br><span class="muted">@extreme_car</span></div></div>
+<div class="panel"><h3>الدفع عند الاستلام</h3><p class="muted">اختر المنتجات من المتجر، افتح السلة، ثم أرسل الطلب.</p><button class="btn primary" onclick="openDrawer('cart')">فتح السلة</button></div></div></div></section>
+<footer>© 2026 Extreme Car</footer>
+
+<div id="overlay" class="overlay" onclick="closeAll()"></div>
+<aside id="menu" class="drawer"><div class="dhead"><b>القائمة</b><button class="icon" onclick="closeAll()">✕</button></div><div class="dbody menu"><a href="#home" onclick="closeAll()">الرئيسية</a><a href="#store" onclick="closeAll()">🛒 المتجر</a><a href="#services" onclick="closeAll()">🛠️ الخدمات</a><a href="#contact" onclick="closeAll()">📞 تواصل معنا</a></div></aside>
+<aside id="cart" class="drawer"><div class="dhead"><b>سلة المشتريات</b><button class="icon" onclick="closeAll()">✕</button></div><div id="cartBody" class="dbody"></div><div class="dfoot"><div class="total"><span>المجموع</span><span>₪ —</span></div><button class="btn primary full" onclick="showForm()">إرسال الطلب — دفع عند الاستلام</button><div id="form" class="form"><label>الاسم</label><input id="name" placeholder="اسمك الكامل"><label>رقم الهاتف</label><input id="phone" placeholder="05xxxxxxxx"><label>العنوان</label><textarea id="address" placeholder="عنوان التسليم"></textarea><button class="btn primary full" onclick="sendOrder()">تأكيد الطلب</button></div></div></aside>
+
+<script>
+let cart=JSON.parse(localStorage.getItem('ec_cart')||'[]');
+function save(){localStorage.setItem('ec_cart',JSON.stringify(cart));render()}
+function add(name){let x=cart.find(i=>i.name===name);x?x.qty++:cart.push({name,qty:1});save();openDrawer('cart')}
+function qty(name,d){let x=cart.find(i=>i.name===name);if(!x)return;x.qty+=d;if(x.qty<1)cart=cart.filter(i=>i.name!==name);save()}
+function render(){document.getElementById('badge').textContent=cart.reduce((a,x)=>a+x.qty,0);let b=document.getElementById('cartBody');if(!cart.length){b.innerHTML='<div class="empty">السلة فارغة حاليًا.</div>';return}b.innerHTML=cart.map(x=>`<div class="cartrow"><div><b>${x.name}</b><div class="muted">High Flow Filter</div></div><div class="qty"><button onclick="qty('${x.name}',-1)">−</button> ${x.qty} <button onclick="qty('${x.name}',1)">+</button></div></div>`).join('')}
+function openDrawer(x){document.getElementById('overlay').classList.add('show');document.getElementById('menu').classList.toggle('show',x==='menu');document.getElementById('cart').classList.toggle('show',x==='cart');render()}
+function closeAll(){document.getElementById('overlay').classList.remove('show');document.getElementById('menu').classList.remove('show');document.getElementById('cart').classList.remove('show')}
+function showForm(){if(!cart.length){alert('السلة فارغة');return}document.getElementById('form').classList.add('show')}
+function sendOrder(){let n=document.getElementById('name').value.trim(),p=document.getElementById('phone').value.trim(),a=document.getElementById('address').value.trim();if(!n||!p||!a){alert('يرجى تعبئة الاسم ورقم الهاتف والعنوان');return}let items=cart.map(x=>x.name+' × '+x.qty).join('\n');let msg='طلب جديد من Extreme Car\n\nالاسم: '+n+'\nالهاتف: '+p+'\nالعنوان: '+a+'\n\nالمنتجات:\n'+items+'\n\nالدفع: عند الاستلام';alert('تم تجهيز الطلب. عند إضافة رقم واتساب المحل في الكود سيتم إرساله مباشرة.');console.log(msg)}
+render();
+</script>
+</body></html>
