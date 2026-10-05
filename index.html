@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Extreme Car | متجر وخدمات السيارات</title>
+<style>
+:root{--bg:#07090c;--panel:#11161d;--panel2:#171d25;--line:#29313b;--red:#e00000;--txt:#f5f7fa;--muted:#a8b0bc}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(circle at 80% 10%,#3b0709 0,transparent 32%),var(--bg);color:var(--txt);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,Tahoma,sans-serif}
+a{text-decoration:none;color:inherit}button{font:inherit;cursor:pointer}
+header{position:sticky;top:0;z-index:50;background:#07090cee;backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav{height:70px;width:min(1120px,92%);margin:auto;display:flex;align-items:center;justify-content:space-between}
+.logo{font-size:24px;font-weight:900;letter-spacing:.8px}.logo span{color:var(--red)}
+.icon{width:44px;height:44px;border:1px solid var(--line);border-radius:12px;background:var(--panel);color:#fff;font-size:22px}
+.cartbtn{border:0;border-radius:12px;background:var(--red);color:#fff;padding:12px 15px;font-weight:900}
+.hero{min-height:430px;padding:70px 5%;display:flex;align-items:center;position:relative;overflow:hidden}
+.hero:before{content:"";position:absolute;inset:0;opacity:.14;background:radial-gradient(ellipse at 68% 65%,#fff 0 3%,transparent 4%),linear-gradient(165deg,transparent 42%,#fff 43% 46%,transparent 47%),linear-gradient(195deg,transparent 42%,#fff 43% 46%,transparent 47%);filter:blur(2px);transform:scale(1.4)}
+.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#07090c 5%,#07090ccd 48%,#07090c55)}
+.hero-content{position:relative;z-index:2;width:min(1120px,92%);margin:auto}.tag{display:inline-block;padding:8px 12px;border:1px solid #7a1818;background:#6b00001c;color:#ff9999;border-radius:999px;font-size:13px;font-weight:800}
+h1{font-size:clamp(45px,8vw,78px);line-height:.95;margin:18px 0 12px}h1 span{color:var(--red)}.hero p{max-width:650px;color:#c7ced7;font-size:18px;line-height:1.8}.btn{display:inline-block;border:0;border-radius:12px;padding:13px 20px;background:var(--red);color:#fff;font-weight:900}
+section{padding:55px 4%}.wrap{width:min(1120px,100%);margin:auto}.section-head{display:flex;justify-content:space-between;align-items:end;margin-bottom:22px}.section-head h2{margin:0;font-size:32px}.section-head p{margin:7px 0 0;color:var(--muted)}
+.products{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.card{background:linear-gradient(145deg,var(--panel2),#0c1015);border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:0 12px 35px #0006}.product-img{height:150px;display:grid;place-items:center;background:radial-gradient(circle,#3a1012,transparent 42%),#0b0f14}.filter{width:58px;height:108px;border-radius:15px;background:repeating-linear-gradient(0deg,#d42a2a 0 3px,#20242a 3px 7px);box-shadow:0 15px 35px #000;transform:rotate(7deg);position:relative}.filter:after{content:"HIGH FLOW";position:absolute;left:-18px;right:-18px;top:43px;background:#090b0e;color:#fff;font-size:8px;font-weight:900;text-align:center;padding:4px}
+.body{padding:15px}.body h3{font-size:16px;line-height:1.45;margin:0 0 6px}.body p{font-size:13px;color:#9da6b2;min-height:38px;line-height:1.45;margin:0}.price{font-size:20px;font-weight:900;color:#ff3333;margin:11px 0}.add{width:100%;border:0;background:var(--red);color:#fff;padding:10px;border-radius:9px;font-weight:900}
+.services{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.service{padding:20px}.service h3{margin:0 0 7px}.service p{color:#a8b0ba;line-height:1.5;margin:0}.contact{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:24px;color:#cbd1d9}
+footer{text-align:center;color:#7f8792;border-top:1px solid var(--line);padding:28px}
+
+.overlay{position:fixed;inset:0;background:#000a;z-index:90;display:none}.overlay.show{display:block}
+.drawer{position:fixed;z-index:100;top:0;right:0;width:min(360px,90vw);height:100%;background:#0b0e13;border-left:1px solid var(--line);transform:translateX(105%);transition:.25s;display:flex;flex-direction:column;box-shadow:-20px 0 50px #000}
+.drawer.show{transform:translateX(0)}
+.drawer-head{height:70px;padding:13px 16px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}.drawer-head strong{font-size:20px}
+.close{width:40px;height:40px;border:1px solid var(--line);border-radius:10px;background:#171c23;color:#fff;font-size:22px}
+.drawer-body{padding:12px 14px;overflow:auto}
+.menu-link{display:flex;align-items:center;justify-content:space-between;width:100%;padding:15px 14px;margin:5px 0;border:1px solid var(--line);border-radius:11px;background:#12171e;color:#fff;font-weight:850;text-align:right}
+.menu-link .arrow{color:#929aa6;transition:.2s}.menu-link.open .arrow{transform:rotate(90deg);color:#fff}
+.submenu{display:none;margin:0 0 8px;padding:0 8px;border-right:2px solid #4d0a0a}.submenu.open{display:block}
+.subitem{display:block;padding:12px 13px;margin:5px 0;border-radius:9px;background:#0f1319;border:1px solid #222a33;color:#e7eaf0;font-weight:700}
+.subitem:hover{border-color:#7a1717;background:#171014}
+.cart-items{padding:14px}.cart-item{display:flex;justify-content:space-between;gap:10px;padding:14px 0;border-bottom:1px solid var(--line)}.qty{display:flex;gap:7px;align-items:center}.qty button{width:29px;height:29px;border:1px solid var(--line);background:#171c23;color:#fff;border-radius:7px}.empty{text-align:center;color:#89919d;padding:40px 10px}
+.cart-footer{padding:15px;border-top:1px solid var(--line);margin-top:auto}.total{display:flex;justify-content:space-between;font-size:20px;font-weight:900;margin-bottom:12px}.field{width:100%;padding:11px;margin:5px 0;background:#080b0f;border:1px solid var(--line);border-radius:9px;color:#fff}.order{display:none}.order.show{display:block}
+@media(max-width:800px){.products{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.product-img{height:120px}.body{padding:10px}.body h3{font-size:12px}.body p{font-size:11px;min-height:42px}.price{font-size:16px}.add{font-size:11px;padding:9px}.services{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.products{gap:6px}.product-img{height:105px}.filter{transform:scale(.78) rotate(7deg)}.body h3{font-size:11px}.body p{display:none}.price{font-size:14px;margin:7px 0}.add{font-size:10px}.services{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header><div class="nav">
+<button class="icon" onclick="openMenu()" aria-label="القائمة">☰</button>
+<div class="logo">EXTREME <span>CAR</span></div>
+<button class="cartbtn" onclick="openCart()">🛒 السلة (<span id="count">0</span>)</button>
+</div></header>
+
+<section class="hero"><div class="hero-content">
+<span class="tag">PERFORMANCE • TUNING • PARTS</span>
+<h1>EXTREME <span>CAR</span></h1>
+<p>متجر قطع الأداء وخدمات تعديل السيارات. اختر سيارتك، تصفح المنتجات، وأرسل طلبك بسهولة مع الدفع عند الاستلام.</p>
+<a class="btn" href="#shop">تصفح المتجر</a>
+</div></section>
+
+<section id="shop"><div class="wrap">
+<div class="section-head"><div><h2>المتجر</h2><p>منتجات Extreme Car</p></div></div>
+<div class="products">
+<div class="card"><div class="product-img"><div class="filter"></div></div><div class="body"><h3>High Flow Filter — Skoda Superb 2.0 TSI</h3><p>فلتر High Flow للأداء وتدفق هواء أفضل.</p><div class="price">₪ —</div><button class="add" onclick="addToCart('High Flow Filter — Skoda Superb 2.0 TSI')">أضف للسلة</button></div></div>
+<div class="card"><div class="product-img"><div class="filter"></div></div><div class="body"><h3>High Flow Filter — GTI MK7</h3><p>فلتر High Flow مناسب لـ Golf GTI MK7.</p><div class="price">₪ —</div><button class="add" onclick="addToCart('High Flow Filter — GTI MK7')">أضف للسلة</button></div></div>
+<div class="card"><div class="product-img"><div class="filter"></div></div><div class="body"><h3>High Flow Filter — GTI MK6</h3><p>فلتر High Flow مناسب لـ Golf GTI MK6.</p><div class="price">₪ —</div><button class="add" onclick="addToCart('High Flow Filter — GTI MK6')">أضف للسلة</button></div></div>
+</div>
+</div></section>
+
+<section id="services"><div class="wrap"><div class="section-head"><div><h2>الخدمات</h2><p>خدمات Extreme Car</p></div></div>
+<div class="services">
+<div class="card service"><h3>ECU Tuning</h3><p>Stage 1 / Stage 2 وCustom Tuning.</p></div>
+<div class="card service"><h3>Dyno Testing</h3><p>قياس القوة والعزم قبل وبعد التعديل.</p></div>
+<div class="card service"><h3>DSG / TCU</h3><p>برمجة وتحسين أداء ناقل الحركة.</p></div>
+<div class="card service"><h3>Pops & Bangs</h3><p>تعديلات أداء وصوت حسب السيارة.</p></div>
+</div></div></section>
+
+<section id="contact"><div class="wrap"><div class="section-head"><div><h2>تواصل معنا</h2><p>للطلب والاستفسار والحجز</p></div></div><div class="contact">عناتا — القدس<br>WhatsApp: أضف رقم المحل لاحقًا<br>TikTok: @extreme_car</div></div></section>
+<footer>© 2026 Extreme Car — Performance & Tuning</footer>
+
+<div id="overlay" class="overlay" onclick="closeAll()"></div>
+
+<aside id="menuDrawer" class="drawer">
+<div class="drawer-head"><strong>القائمة</strong><button class="close" onclick="closeAll()">×</button></div>
+<div class="drawer-body">
+<a class="menu-link" href="#shop" onclick="closeAll()">🏠 الرئيسية</a>
+
+<button id="storeMenu" class="menu-link" onclick="toggleStoreMenu()">🛒 المتجر <span class="arrow">‹</span></button>
+<div id="storeSubmenu" class="submenu">
+<a class="subitem" href="#shop" onclick="selectBrand('all')">كل المنتجات</a>
+<a class="subitem" href="#shop" onclick="selectBrand('golf')">Golf</a>
+<a class="subitem" href="#shop" onclick="selectBrand('audi')">Audi</a>
+<a class="subitem" href="#shop" onclick="selectBrand('bmw')">BMW</a>
+<a class="subitem" href="#shop" onclick="selectBrand('seat')">SEAT</a>
+<a class="subitem" href="#shop" onclick="selectBrand('skoda')">ŠKODA</a>
+<a class="subitem" href="#shop" onclick="selectBrand('volkswagen')">Volkswagen</a>
+<a class="subitem" href="#shop" onclick="selectBrand('mercedes')">Mercedes</a>
+<a class="subitem" href="#shop" onclick="selectBrand('toyota')">Toyota</a>
+<a class="subitem" href="#shop" onclick="selectBrand('mazda')">Mazda</a>
+<a class="subitem" href="#shop" onclick="selectBrand('honda')">Honda</a>
+</div>
+
+<a class="menu-link" href="#services" onclick="closeAll()">🛠️ الخدمات <span>←</span></a>
+<a class="menu-link" href="#contact" onclick="closeAll()">📞 تواصل معنا <span>←</span></a>
+</div>
+</aside>
+
+<aside id="cartDrawer" class="drawer">
+<div class="drawer-head"><strong>سلة المشتريات</strong><button class="close" onclick="closeAll()">×</button></div>
+<div id="cartItems" class="cart-items"></div>
+<div class="cart-footer">
+<div class="total"><span>المجموع</span><span id="total">₪ —</span></div>
+<button class="add" onclick="showOrder()">إرسال الطلب — دفع عند الاستلام</button>
+<div id="order" class="order">
+<input id="name" class="field" placeholder="الاسم الكامل">
+<input id="phone" class="field" placeholder="رقم الهاتف">
+<textarea id="address" class="field" placeholder="العنوان"></textarea>
+<button class="add" onclick="sendOrder()">تأكيد الطلب</button>
+</div>
+</div>
+</aside>
+
+<script>
+let cart=[];
+function addToCart(name){let x=cart.find(i=>i.name===name);x?x.qty++:cart.push({name,qty:1});renderCart();openCart();}
+function changeQty(name,d){let x=cart.find(i=>i.name===name);if(!x)return;x.qty+=d;if(x.qty<1)cart=cart.filter(i=>i.name!==name);renderCart();}
+function renderCart(){
+document.getElementById('count').textContent=cart.reduce((a,x)=>a+x.qty,0);
+const box=document.getElementById('cartItems');
+if(!cart.length){box.innerHTML='<div class="empty">السلة فارغة حاليًا.</div>';return}
+box.innerHTML=cart.map(x=>`<div class="cart-item"><div><b>${x.name}</b><div style="color:#8f98a4;font-size:12px">High Flow Filter</div></div><div class="qty"><button onclick="changeQty('${x.name.replaceAll("'","\\\\'")}',-1)">−</button><b>${x.qty}</b><button onclick="changeQty('${x.name.replaceAll("'","\\\\'")}',1)">+</button></div></div>`).join('');
+}
+function openMenu(){document.getElementById('menuDrawer').classList.add('show');document.getElementById('overlay').classList.add('show')}
+function openCart(){renderCart();document.getElementById('cartDrawer').classList.add('show');document.getElementById('overlay').classList.add('show')}
+function closeAll(){document.querySelectorAll('.drawer').forEach(x=>x.classList.remove('show'));document.getElementById('overlay').classList.remove('show')}
+function toggleStoreMenu(){const s=document.getElementById('storeSubmenu'),b=document.getElementById('storeMenu');s.classList.toggle('open');b.classList.toggle('open')}
+function selectBrand(brand){closeAll();document.getElementById('storeSubmenu').classList.remove('open');document.getElementById('storeMenu').classList.remove('open');document.getElementById('shop').scrollIntoView({behavior:'smooth'});/* future brand filtering hook */ }
+function showOrder(){if(!cart.length)return alert('السلة فارغة');document.getElementById('order').classList.add('show')}
+function sendOrder(){
+if(!cart.length)return;
+const n=document.getElementById('name').value.trim(),p=document.getElementById('phone').value.trim(),a=document.getElementById('address').value.trim();
+if(!n||!p||!a)return alert('يرجى تعبئة الاسم ورقم الهاتف والعنوان.');
+const items=cart.map((x,i)=>`${i+1}. ${x.name} × ${x.qty}`).join('\\n');
+const msg=`طلب جديد من Extreme Car\\n\\nالاسم: ${n}\\nالهاتف: ${p}\\nالعنوان: ${a}\\n\\nالمنتجات:\\n${items}\\n\\nالدفع: عند الاستلام`;
+alert('تم تجهيز الطلب. بعد إضافة رقم واتساب المحل يمكن إرساله مباشرة.');
+console.log(msg);
+}
+renderCart();
+</script>
+</body>
+</html>
