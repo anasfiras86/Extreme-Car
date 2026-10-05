@@ -1,19 +1,88 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Extreme Car | Performance & ECU Tuning</title>
-<meta name="description" content="Extreme Car - برمجة سيارات، ECU tuning، Dyno، Stage 1 وStage 2، Pops & Bangs والمزيد.">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Extreme Car | Performance & Tuning</title>
 <style>
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#080808;color:#fff;line-height:1.7}.container{width:min(1120px,92%);margin:auto}.nav{position:sticky;top:0;z-index:10;background:rgba(8,8,8,.92);backdrop-filter:blur(10px);border-bottom:1px solid #222}.navin{height:72px;display:flex;align-items:center;justify-content:space-between}.logo{font-size:25px;font-weight:900;letter-spacing:1px}.logo span{color:#e31b23}.nav a{color:#ddd;text-decoration:none;margin:0 10px;font-size:14px}.hero{min-height:680px;display:flex;align-items:center;background:radial-gradient(circle at 75% 35%,#4c0b0d 0,#160608 30%,#080808 65%);position:relative;overflow:hidden}.hero:after{content:'';position:absolute;inset:auto -10% -170px -10%;height:300px;background:#080808;border-radius:50% 50% 0 0}.hero h1{font-size:clamp(44px,7vw,88px);line-height:1;margin:0 0 18px;font-weight:950}.hero h1 span{color:#e31b23}.hero p{max-width:650px;color:#bbb;font-size:19px}.buttons{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}.btn{padding:13px 22px;border-radius:7px;text-decoration:none;font-weight:800;display:inline-block}.red{background:#e31b23;color:#fff}.dark{border:1px solid #444;color:#fff}.section{padding:80px 0}.eyebrow{color:#e31b23;font-weight:900;letter-spacing:2px}.title{font-size:40px;margin:6px 0 36px}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.card{background:#111;border:1px solid #252525;border-radius:14px;padding:25px}.card h3{margin-top:0;font-size:21px}.card p{color:#aaa}.icon{font-size:30px}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:30px}.stat{background:#101010;border:1px solid #222;border-radius:12px;padding:20px;text-align:center}.stat b{display:block;font-size:30px;color:#e31b23}.about{background:#0d0d0d}.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.shot{height:210px;border-radius:12px;border:1px solid #292929;background:linear-gradient(135deg,#1a1a1a,#500b0e);display:flex;align-items:end;padding:18px;font-weight:800}.contact{background:linear-gradient(135deg,#180708,#0b0b0b);border-top:1px solid #252525}.contactbox{display:flex;justify-content:space-between;align-items:center;gap:30px}.contact h2{font-size:42px;margin:0}.footer{padding:28px 0;color:#777;border-top:1px solid #222;font-size:14px}.mobile{display:none}@media(max-width:760px){.navlinks{display:none}.mobile{display:block}.hero{min-height:600px}.grid,.gallery{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}.contactbox{display:block}.contact h2{font-size:32px}.navin{height:62px}}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#080808;color:#fff}
+header{position:sticky;top:0;z-index:10;background:rgba(5,5,5,.94);border-bottom:1px solid #2a2a2a;padding:14px 6%;display:flex;align-items:center;justify-content:space-between}
+.logo{font-size:25px;font-weight:900;letter-spacing:1px}.logo span{color:#e00000}
+nav a{color:#fff;text-decoration:none;margin:0 10px;font-weight:700}
+.cart{background:#e00000;border:0;color:#fff;border-radius:8px;padding:10px 14px;font-weight:bold}
+.hero{min-height:520px;padding:100px 7%;display:flex;align-items:center;background:radial-gradient(circle at 80% 40%,#5e0000 0,#170000 22%,#080808 60%);position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(120deg,rgba(0,0,0,.75),rgba(0,0,0,.15),rgba(0,0,0,.8))}
+.hero>*{position:relative;z-index:1}.hero h1{font-size:clamp(42px,8vw,82px);margin:0 0 12px}.hero h1 span{color:#e00000}.hero p{font-size:20px;color:#ccc;max-width:650px;line-height:1.7}
+.btn{display:inline-block;background:#e00000;color:#fff;text-decoration:none;padding:14px 22px;border-radius:9px;font-weight:900;margin-top:12px}
+section{padding:60px 7%}.title{text-align:center;margin-bottom:35px}.title h2{font-size:34px;margin:0 0 8px}.title p{color:#999}
+.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:22px}
+.card{background:#111;border:1px solid #292929;border-radius:16px;overflow:hidden;box-shadow:0 10px 30px #000}
+.product-img{height:220px;background:linear-gradient(135deg,#202020,#090909);display:flex;align-items:center;justify-content:center;padding:15px}
+.filter{width:90px;height:175px;border-radius:20px;background:repeating-linear-gradient(0deg,#d33 0 4px,#111 4px 8px);box-shadow:0 0 30px #900;transform:rotate(7deg);position:relative}.filter:after{content:"HIGH FLOW";position:absolute;left:-12px;right:-12px;top:70px;background:#111;color:#fff;text-align:center;font-size:11px;padding:6px;font-weight:bold}
+.card-body{padding:18px}.card h3{margin:0 0 8px}.price{font-size:22px;font-weight:900;color:#e00000;margin:14px 0}.add{width:100%;border:0;background:#e00000;color:#fff;padding:12px;border-radius:8px;font-weight:900;cursor:pointer}
+.services{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px}.service{background:#101010;border:1px solid #272727;padding:22px;border-radius:14px}.service h3{margin-top:0}
+footer{text-align:center;padding:35px;color:#888;border-top:1px solid #222}
+.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:20;align-items:center;justify-content:center;padding:20px}.modal-box{background:#111;border:1px solid #333;border-radius:16px;max-width:520px;width:100%;padding:25px}.modal-box input,.modal-box textarea{width:100%;margin:7px 0;padding:12px;background:#080808;border:1px solid #333;border-radius:8px;color:#fff}.close{float:left;background:none;border:0;color:#fff;font-size:25px}.summary{background:#090909;padding:15px;border-radius:10px;margin:10px 0}
+@media(max-width:650px){nav{display:none}.hero{min-height:460px;padding:80px 6%}section{padding:45px 6%}}
 </style>
 </head>
 <body>
-<header class="nav"><div class="container navin"><div class="logo">EXTREME <span>CAR</span></div><nav class="navlinks"><a href="#services">الخدمات</a><a href="#about">عنّا</a><a href="#work">أعمالنا</a><a href="#contact">تواصل معنا</a></nav><a class="btn red mobile" href="https://wa.me/972584458589">واتساب</a></div></header>
-<section class="hero"><div class="container"><div class="eyebrow">PERFORMANCE • ECU • DYNO</div><h1>خلّي سيارتك<br><span>تختلف.</span></h1><p>Extreme Car — برمجة وتعديل سيارات بأداء احترافي. ECU Tuning، Stage 1، Stage 2، Pops & Bangs، Dyno وفحص وتعديل مخصص حسب السيارة.</p><div class="buttons"><a class="btn red" href="https://wa.me/972584458589">احجز موعدك عبر واتساب</a><a class="btn dark" href="#services">شوف خدماتنا</a></div><div class="stats"><div class="stat"><b>10+</b>سنوات خبرة</div><div class="stat"><b>ECU</b>برمجة وتعديل</div><div class="stat"><b>DYNO</b>قياس قبل وبعد</div><div class="stat"><b>VAG</b>متخصصون</div></div></div></section>
-<section id="services" class="section"><div class="container"><div class="eyebrow">OUR SERVICES</div><h2 class="title">خدماتنا</h2><div class="grid"><article class="card"><div class="icon">⚡</div><h3>ECU Tuning</h3><p>برمجة احترافية وتحسين استجابة وأداء المحرك حسب حالة السيارة.</p></article><article class="card"><div class="icon">🏁</div><h3>Stage 1 / Stage 2</h3><p>تعديلات أداء مدروسة مع اختيار الملف المناسب للمواصفات والتعديلات.</p></article><article class="card"><div class="icon">💥</div><h3>Pops & Bangs</h3><p>برمجة صوتية مخصصة حسب السيارة والاستخدام.</p></article><article class="card"><div class="icon">📈</div><h3>Dyno Test</h3><p>قياس القوة والعزم قبل وبعد التعديل للحصول على نتيجة واضحة.</p></article><article class="card"><div class="icon">⚙️</div><h3>DSG / TCU</h3><p>برمجة ناقل الحركة وتحسين نقاط التعشيق والاستجابة حسب النظام.</p></article><article class="card"><div class="icon">🔧</div><h3>Custom Tuning</h3><p>تعديل مخصص للمشاريع المعدلة، مع مراعاة القطع والوقود والاستخدام.</p></article></div></div></section>
-<section id="about" class="section about"><div class="container"><div class="eyebrow">WHY EXTREME CAR</div><h2 class="title">خبرة، قياس، ونتيجة واضحة.</h2><div class="grid"><div class="card"><h3>خبرة أكثر من 10 سنين</h3><p>خبرة عملية في برمجة وتعديل السيارات ومشاريع الأداء.</p></div><div class="card"><h3>قبل / بعد</h3><p>نستخدم القياس لمقارنة النتيجة بدل الاعتماد على الأرقام النظرية فقط.</p></div><div class="card"><h3>VAG وأكثر</h3><p>خبرة قوية في سيارات Volkswagen, Audi, SEAT وŠkoda، مع خدمات لموديلات أخرى.</p></div></div></div></section>
-<section id="work" class="section"><div class="container"><div class="eyebrow">RECENT WORK</div><h2 class="title">من شغلنا</h2><div class="gallery"><div class="shot">Stage 1 • Dyno</div><div class="shot">Custom ECU Tune</div><div class="shot">Performance Build</div><div class="shot">VAG Performance</div><div class="shot">DSG / TCU</div><div class="shot">Pops & Bangs</div></div></div></section>
-<section id="contact" class="section contact"><div class="container contactbox"><div><div class="eyebrow">GET IN TOUCH</div><h2>جاهز ترفع أداء سيارتك؟</h2><p style="color:#aaa">Jerusalem / Anata • للحجز والاستفسار تواصل معنا.</p></div><div class="buttons"><a class="btn red" href="https://wa.me/972584458589">واتساب</a><a class="btn dark" href="tel:+972584458589">اتصال</a></div></div></section>
-<footer class="footer"><div class="container">© 2026 Extreme Car — Performance & ECU Tuning</div></footer>
-</body></html>
+<header>
+<div class="logo">EXTREME <span>CAR</span></div>
+<nav><a href="#shop">المتجر</a><a href="#services">الخدمات</a><a href="#contact">تواصل معنا</a></nav>
+<button class="cart" onclick="openCart()">🛒 السلة (<span id="count">0</span>)</button>
+</header>
+
+<div class="hero">
+<div>
+<h1>EXTREME <span>CAR</span></h1>
+<p>Performance • ECU Tuning • High Flow Filters<br>قطع أداء وبرمجة احترافية لعشاق السيارات.</p>
+<a class="btn" href="#shop">تصفح المتجر</a>
+</div>
+</div>
+
+<section id="shop">
+<div class="title"><h2>متجر Extreme Car</h2><p>منتجات مختارة للأداء — الدفع عند الاستلام</p></div>
+<div class="products">
+<div class="card"><div class="product-img"><div class="filter"></div></div><div class="card-body"><h3>High Flow Filter — Skoda Superb 2.0 TSI</h3><p>فلتر هواء High Flow لتحسين تدفق الهواء.</p><div class="price">₪ 0</div><button class="add" onclick="add('High Flow Filter — Skoda Superb 2.0 TSI',0)">أضف للسلة</button></div></div>
+<div class="card"><div class="product-img"><div class="filter"></div></div><div class="card-body"><h3>High Flow Filter — GTI MK7</h3><p>فلتر أداء High Flow مناسب لـ Golf GTI MK7.</p><div class="price">₪ 0</div><button class="add" onclick="add('High Flow Filter — GTI MK7',0)">أضف للسلة</button></div></div>
+<div class="card"><div class="product-img"><div class="filter"></div></div><div class="card-body"><h3>High Flow Filter — GTI MK6</h3><p>فلتر أداء High Flow مناسب لـ Golf GTI MK6.</p><div class="price">₪ 0</div><button class="add" onclick="add('High Flow Filter — GTI MK6',0)">أضف للسلة</button></div></div>
+</div>
+</section>
+
+<section id="services"><div class="title"><h2>خدمات Extreme Car</h2></div><div class="services">
+<div class="service"><h3>ECU Tuning</h3><p>Stage 1 / Stage 2 وCustom Tuning.</p></div>
+<div class="service"><h3>Dyno Testing</h3><p>قياس القوة والعزم قبل وبعد التعديل.</p></div>
+<div class="service"><h3>DSG / TCU</h3><p>برمجة وتحسين أداء ناقل الحركة.</p></div>
+<div class="service"><h3>Pops & Bangs</h3><p>تعديلات صوت وأداء حسب السيارة.</p></div>
+</div></section>
+
+<section id="contact"><div class="title"><h2>تواصل معنا</h2><p>اطلب المنتج والدفع عند الاستلام</p></div></section>
+<footer>© 2026 Extreme Car — Performance & Tuning</footer>
+
+<div class="modal" id="modal"><div class="modal-box">
+<button class="close" onclick="closeCart()">×</button><h2>طلبك</h2><div id="items"></div>
+<input id="name" placeholder="الاسم">
+<input id="phone" placeholder="رقم الهاتف">
+<textarea id="address" placeholder="العنوان"></textarea>
+<p>طريقة الدفع: <b>الدفع عند الاستلام</b></p>
+<button class="add" onclick="order()">تأكيد الطلب عبر WhatsApp</button>
+</div></div>
+
+<script>
+let cart=[];
+function add(name,price){cart.push({name,price});document.getElementById('count').textContent=cart.length;alert('تمت إضافة المنتج للسلة');}
+function openCart(){document.getElementById('modal').style.display='flex';render();}
+function closeCart(){document.getElementById('modal').style.display='none';}
+function render(){let s='';cart.forEach((x,i)=>s+=`<div class="summary">${i+1}. ${x.name} — ₪ ${x.price}</div>`);document.getElementById('items').innerHTML=s||'<p>السلة فارغة.</p>';}
+function order(){
+if(!cart.length)return alert('السلة فارغة');
+let n=document.getElementById('name').value,p=document.getElementById('phone').value,a=document.getElementById('address').value;
+let msg='طلب جديد من موقع Extreme Car%0A%0A';
+cart.forEach((x,i)=>msg+=(i+1)+'. '+encodeURIComponent(x.name)+' — ₪ '+x.price+'%0A');
+msg+='%0Aالاسم: '+encodeURIComponent(n)+'%0Aالهاتف: '+encodeURIComponent(p)+'%0Aالعنوان: '+encodeURIComponent(a)+'%0Aالدفع: عند الاستلام';
+window.open('https://wa.me/?text='+msg,'_blank');
+}
+</script>
+</body>
+</html>
