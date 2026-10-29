@@ -1174,6 +1174,9 @@ async function submitOrder(){
  document.getElementById('checkoutPhone').value='';
  document.getElementById('checkoutAddress').value='';
  document.getElementById('deliveryRegion').value='';
+ // Reset the in-flight lock after a successful order so the next order can be submitted.
+ extremeCarOrderSending=false;
+ if(btn){btn.disabled=false;btn.textContent='إتمام الطلب';}
 
 }
 // Reliable checkout click binding with visible feedback if an unexpected client-side error occurs.
