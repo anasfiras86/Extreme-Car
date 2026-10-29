@@ -352,7 +352,7 @@ button.add.stock-disabled,button.featured-add.stock-disabled{background:#3b414a!
 <button class="menu-item" onclick="showSection('extremeServices')">الخدمات</button><button class="menu-item" onclick="showSection('contactSection')">تواصل معنا</button>
 </aside></div>
 <div class="cart-panel" id="cartPanel"><div class="shade" onclick="closeCart()"></div><aside class="cart-box"><button class="icon close" onclick="closeCart()">×</button><h3>سلة المشتريات</h3><div id="cartItems"><p style="color:var(--muted)">السلة فارغة حالياً.</p></div><div class="cart-total" id="cartTotal">المجموع: ₪0</div><div class="checkout-box" id="checkoutBox" style="display:none"><h4>إتمام الطلب</h4><div class="checkout-payment"><input type="radio" id="codPayment" checked disabled><label for="codPayment">الدفع عند الاستلام</label></div><input class="checkout-field" id="checkoutName" type="text" placeholder="الاسم الكامل" autocomplete="name"><input class="checkout-field" id="checkoutPhone" type="tel" placeholder="رقم الهاتف (10 أرقام على الأقل)" autocomplete="tel" inputmode="tel" aria-describedby="checkoutPhoneHint" oninput="this.setCustomValidity('')" onblur="validateCheckoutPhone(false)">
-<div class="checkout-note" id="checkoutPhoneHint">أدخل 10 أرقام على الأقل. يُسمح بالمسافات وعلامة + والشرطات.</div><input class="checkout-field" id="checkoutAddress" type="text" placeholder="العنوان" autocomplete="street-address"><select class="checkout-field" id="deliveryRegion" onchange="renderCart()" required><option value="">اختَر منطقة التوصيل</option><option value="القدس">القدس — ₪30</option><option value="الضفه">الضفه — ₪20</option><option value="الداخل">الداخل — ₪70</option></select><button class="checkout-submit" id="checkoutSubmit" type="button" onclick="submitOrder()">إتمام الطلب</button><div class="checkout-note">بعد إتمام الطلب سيظهر رقم الطلب، وسيتم إرسال تفاصيله إلى المتجر.</div><div class="checkout-success" id="checkoutSuccess"></div></div></aside></div>
+<div class="checkout-note" id="checkoutPhoneHint">أدخل 10 أرقام على الأقل. يُسمح بالمسافات وعلامة + والشرطات.</div><input class="checkout-field" id="checkoutAddress" type="text" placeholder="العنوان" autocomplete="street-address"><select class="checkout-field" id="deliveryRegion" onchange="renderCart()" required><option value="">اختَر منطقة التوصيل</option><option value="القدس">القدس — ₪30</option><option value="الضفه">الضفه — ₪20</option><option value="الداخل">الداخل — ₪70</option></select><button class="checkout-submit" id="checkoutSubmit" type="button">إتمام الطلب</button><div class="checkout-note">بعد إتمام الطلب سيظهر رقم الطلب، وسيتم إرسال تفاصيله إلى المتجر.</div><div class="checkout-success" id="checkoutSuccess"></div></div></aside></div>
 
 <script>
 const products=[
@@ -1175,7 +1175,26 @@ async function submitOrder(){
  document.getElementById('checkoutAddress').value='';
  document.getElementById('deliveryRegion').value='';
 
-}</script>
+}
+// Reliable checkout click binding with visible feedback if an unexpected client-side error occurs.
+window.submitOrder = submitOrder;
+(function(){
+  const checkoutButton = document.getElementById('checkoutSubmit');
+  if (!checkoutButton || checkoutButton.dataset.checkoutBound === '1') return;
+  checkoutButton.dataset.checkoutBound = '1';
+  checkoutButton.addEventListener('click', function(event){
+    event.preventDefault();
+    Promise.resolve().then(function(){ return submitOrder(); }).catch(function(error){
+      console.error('Extreme Car checkout click failed:', error);
+      const button = document.getElementById('checkoutSubmit');
+      if (button) { button.disabled = false; button.textContent = 'إعادة محاولة إتمام الطلب'; }
+      extremeCarOrderSending = false;
+      alert('صار خطأ أثناء تنفيذ إتمام الطلب. لم يتم تأكيد إرسال الطلب. افتح Console إذا تكررت المشكلة، أو أرسل لنا صورة رسالة الخطأ.');
+    });
+  });
+})();
+
+</script>
 
 <script id="topbar-functional-handlers">
 (function(){
