@@ -317,6 +317,21 @@ button.add.stock-disabled,button.featured-add.stock-disabled{background:#3b414a!
 
 
 </style>
+
+<style id="extreme-car-total-visits-style">
+.ec-total-visits{
+  margin:7px auto 0;
+  color:#68717d;
+  font-size:10px;
+  font-weight:400;
+  line-height:1.5;
+  opacity:.72;
+  text-align:center;
+  letter-spacing:.1px;
+}
+.ec-total-visits span{font-variant-numeric:tabular-nums;color:#78818d}
+</style>
+
 </head>
 <!-- SKODA_MODELS_ENABLED -->
 <body>
@@ -392,7 +407,7 @@ button.add.stock-disabled,button.featured-add.stock-disabled{background:#3b414a!
 
 <section class="store-page" id="storePage"><button class="back" onclick="showHome()">← الرجوع للرئيسية</button><div class="section-head"><h2 id="storeTitle"></h2></div><div id="storeContent"></div></section>
 </main>
-<footer>Extreme Car — Jerusalem / Anata</footer>
+<footer>Extreme Car — Jerusalem / Anata<div class="ec-total-visits" aria-label="إجمالي زيارات الموقع">إجمالي الزيارات: <span id="ecTotalVisits">—</span></div></footer>
 
 <div class="menu" id="menu"><div class="shade" onclick="closeMenu()"></div><aside class="drawer"><button class="icon close" onclick="closeMenu()">×</button><h3>القائمة</h3>
 <button class="menu-item" onclick="showHome();closeMenu()">الرئيسية</button>
@@ -2076,6 +2091,62 @@ function closeOrderSuccess(){const o=document.getElementById('orderSuccessOverla
  window.closeFitmentProduct=function(){$('ecFitProductModal')?.classList.remove('open');document.body.style.overflow=''};
  document.addEventListener('keydown',e=>{if(e.key==='Escape')window.closeFitmentProduct()});
  document.addEventListener('click',e=>{const card=e.target.closest('.featured-card');if(card&&!e.target.closest('button')){const i=card.getAttribute('data-product-index');if(i!==null){e.preventDefault();window.openProductDetailsByIndex(i)}}const c=e.target.closest('#storeContent .card');if(c&&!e.target.closest('button,a')){const i=c.getAttribute('data-product-index');if(i!==null){e.preventDefault();window.openProductDetailsByIndex(i)}}});
+})();
+</script>
+
+
+<script id="extreme-car-total-visits">
+(function () {
+  const outputId = 'ecTotalVisits';
+  const sessionKey = 'extreme_car_visit_counted_v1';
+
+  function showCount(value) {
+    const el = document.getElementById(outputId);
+    if (!el || value === null || value === undefined || !Number.isFinite(Number(value))) return;
+    el.textContent = Number(value).toLocaleString('en-US');
+  }
+
+  async function loadVisitCount() {
+    const url = typeof SUPABASE_URL !== 'undefined' ? SUPABASE_URL : '';
+    const key = typeof SUPABASE_PUBLISHABLE_KEY !== 'undefined' ? SUPABASE_PUBLISHABLE_KEY : '';
+    if (!url || !key) return;
+
+    const root = url.replace(/\/$/, '') + '/rest/v1';
+    const headers = {
+      'apikey': key,
+      'Authorization': 'Bearer ' + key,
+      'Content-Type': 'application/json'
+    };
+
+    try {
+      if (!sessionStorage.getItem(sessionKey)) {
+        const response = await fetch(root + '/rpc/increment_site_visits', {
+          method: 'POST',
+          headers,
+          body: '{}'
+        });
+        if (!response.ok) throw new Error('Visit counter RPC failed: ' + response.status);
+        const count = await response.json();
+        sessionStorage.setItem(sessionKey, '1');
+        showCount(count);
+      } else {
+        const response = await fetch(root + '/site_stats?id=eq.main&select=total_visits', {
+          headers: { 'apikey': key, 'Authorization': 'Bearer ' + key }
+        });
+        if (!response.ok) throw new Error('Visit counter read failed: ' + response.status);
+        const rows = await response.json();
+        if (Array.isArray(rows) && rows.length) showCount(rows[0].total_visits);
+      }
+    } catch (error) {
+      console.warn('Extreme Car visit counter is not configured yet:', error);
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', loadVisitCount, { once: true });
+  } else {
+    loadVisitCount();
+  }
 })();
 </script>
 
